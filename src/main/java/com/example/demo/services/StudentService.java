@@ -22,6 +22,11 @@ public class StudentService {
         return optionalStudent.orElse(null);
     }
 
+    public List<Student> getStudentsByName(String name) {
+        return studentRepository.findByNameContaining(name);
+    }
+
+
     public Student addStudent(Student student) {
         return this.studentRepository.save(student);
     }

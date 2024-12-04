@@ -29,6 +29,17 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
+    @GetMapping("search")
+    public ResponseEntity<List<Student>> getStudentByName(@RequestParam(value = "name") String name) {
+        List<Student> students = studentService.getStudentsByName(name);
+
+        if (students.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(students);
+    }
+
+
     @PostMapping
     public ResponseEntity<Student> addStudent(@RequestBody Student student){
         return ResponseEntity.ok(this.studentService.addStudent(student));
